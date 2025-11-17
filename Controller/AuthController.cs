@@ -1,12 +1,39 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HealthcareAppointmentManagementAPI.DTO.Auth;
+using HealthcareAppointmentManagementAPI.Services.Auth;
+using Microsoft.AspNetCore.Mvc;
 
-namespace HealthcareAppointmentManagementAPI.Controller
+namespace HealthcareAppointmentManagementAPI.Controllers
 {
-    public class AuthController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AuthController : ControllerBase
     {
-        public IActionResult Index()
+        private readonly IAuthService _authService;
+
+        public AuthController(IAuthService authService)
         {
-            return View();
+            _authService = authService;
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
+        {
+            var token = await _authService.LoginAsync(loginDto);
+            return Ok(new { Token = token });
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
+        {
+            var token = await _authService.RegisterAsync(registerDto);
+            return Ok(new { Token = token });
+        }
+
+        [HttpPost("external-login")]
+        public async Task<IActionResult> ExternalLogin([FromBody] ExternalLoginDto externalLoginDto)
+        {
+            var token = await _authService.ExternalLoginAsync(externalLoginDto);
+            return Ok(new { Token = token });
         }
     }
 }

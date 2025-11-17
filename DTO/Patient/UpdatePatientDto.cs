@@ -2,5 +2,6 @@
 {
     public class UpdatePatientDto
     {
+        public DateTime DateOfBirth { get; set; }
     }
 }

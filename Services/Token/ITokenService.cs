@@ -1,6 +1,9 @@
-﻿namespace HealthcareAppointmentManagementAPI.Services.Token
+﻿using HealthcareAppointmentManagementAPI.Models;
+
+namespace HealthcareAppointmentManagementAPI.Token
 {
-    public class ITokenService
+    public interface ITokenService
     {
+        string GenerateToken(ApplicationUser user, IList<string> roles, IDictionary<string, string> claims = null);
     }
 }

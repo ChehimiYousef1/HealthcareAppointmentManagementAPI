@@ -146,3 +146,6 @@ C:\Users\user\source\repos\HealthcareAppointmentManagementAPI\HealthcareAppointm
 C:\Users\user\source\repos\HealthcareAppointmentManagementAPI\HealthcareAppointmentManagementAPI\obj\Debug\net8.0\HealthcareAppointmentManagementAPI.pdb
 C:\Users\user\source\repos\HealthcareAppointmentManagementAPI\HealthcareAppointmentManagementAPI\obj\Debug\net8.0\HealthcareAppointmentManagementAPI.genruntimeconfig.cache
 C:\Users\user\source\repos\HealthcareAppointmentManagementAPI\HealthcareAppointmentManagementAPI\obj\Debug\net8.0\ref\HealthcareAppointmentManagementAPI.dll
+C:\Users\user\source\repos\HealthcareAppointmentManagementAPI\HealthcareAppointmentManagementAPI\bin\Debug\net8.0\FluentValidation.dll
+C:\Users\user\source\repos\HealthcareAppointmentManagementAPI\HealthcareAppointmentManagementAPI\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
+C:\Users\user\source\repos\HealthcareAppointmentManagementAPI\HealthcareAppointmentManagementAPI\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
