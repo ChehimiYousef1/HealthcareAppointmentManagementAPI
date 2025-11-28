@@ -1,0 +1,56 @@
+﻿using HealthcareAppointmentManagementAPI.DTO.Patient;
+using HealthcareAppointmentManagementAPI.Services.Patient;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace HealthcareAppointmentManagementAPI.Controller
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    [Authorize(Roles = "Patient,Admin")]
+    public class PatientController : ControllerBase
+    {
+        private readonly IPatientService _patientService;
+
+        public PatientController(IPatientService patientService)
+        {
+            _patientService = patientService;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetPatient(int id)
+        {
+            var patient = await _patientService.GetPatientByIdAsync(id);
+            return Ok(patient);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllPatients()
+        {
+            var patients = await _patientService.GetAllPatientsAsync();
+            return Ok(patients);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreatePatient([FromBody] CreatePatientDto dto)
+        {
+            if (dto == null)
+                return BadRequest("Patient data is required.");
+
+            if (string.IsNullOrEmpty(dto.ApplicationUserId))
+                return BadRequest("ApplicationUserId is required.");
+
+            var patient = await _patientService.CreatePatientAsync(dto);
+
+            return CreatedAtAction(nameof(GetPatient), new { id = patient.Id }, patient);
+        }
+
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdatePatient(int id, [FromBody] UpdatePatientDto dto)
+        {
+            var patient = await _patientService.UpdatePatientAsync(id, dto);
+            return Ok(patient);
+        }
+    }
+}
